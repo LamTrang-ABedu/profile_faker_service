@@ -1,0 +1,12 @@
+[Unit]
+Description=HopeHub profile faker service
+After=network.target
+
+[Service]
+ExecStart=/opt/hopehub/profile_faker_service/run.sh
+WorkingDirectory=/opt/hopehub/profile_faker_service
+Restart=always
+User=ubuntu
+
+[Install]
+WantedBy=multi-user.target
