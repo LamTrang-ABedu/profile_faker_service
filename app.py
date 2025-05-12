@@ -3,7 +3,7 @@ from utils.profile_faker import generate_profile
 
 app = Flask(__name__)
 
-@app.route('/api/profile')
+@app.route('/api/profile-faker')
 def api_profile():
     locale = request.args.get('locale', 'en_US')
     return jsonify(generate_profile(locale))
