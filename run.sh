@@ -1,8 +1,6 @@
 #!/bin/bash
 cd /opt/hopehub/profile_faker_service
-
-# Cài thư viện (nếu cần)
-/usr/bin/python3 -m pip install -r requirements.txt
-
-# Chạy Flask app
-/usr/bin/python3 app.py
+git pull
+pip3 install -r requirements.txt
+pkill -f "5002"
+nohup gunicorn -w 2 -b 127.0.0.1:5002 app:app > log.txt 2>&1 &
