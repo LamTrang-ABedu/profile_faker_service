@@ -1,6 +1,14 @@
 from faker import Faker
 import random
 
+LOCALE_COUNTRY_MAP = {
+    'tr_TR': 'Turkey',
+    'uk_UA': 'Ukraine',
+    'en_US': 'United States',
+    'en_GB': 'United Kingdom',
+    'vi_VN': 'Vietnam',
+    'yo_NG': 'Nigeria'
+}
 def generate_profile(locale='en_US'):
     fake = Faker(locale)
     gender = random.choice(['male', 'female'])
@@ -9,6 +17,8 @@ def generate_profile(locale='en_US'):
     full_name = f"{first_name} {last_name}"
     parent_last_name = last_name
     father_first = fake.first_name_male()
+    
+    country = LOCALE_COUNTRY_MAP.get(locale, 'N/A')  # Fix ở đây
     return {
         'first_name': first_name,
         'last_name': last_name,
@@ -22,7 +32,7 @@ def generate_profile(locale='en_US'):
         'street': fake.street_address(),
         'city': fake.city(),
         'state': fake.state() if hasattr(fake, 'state') else 'N/A',
-        'country': fake.current_country() if hasattr(fake, 'current_country') else 'N/A',
+        'country': country,  # Sử dụng mapping rõ ràng ở đây
         'zip_code': fake.postcode(),
         'parent': {
             'first_name': father_first,
